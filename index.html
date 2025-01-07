@@ -2,24 +2,24 @@
 <html lang="en">
 
 <head>
-  <title>The main page</title>
+  <title>Home Page</title>
+  <link href='https://fonts.googleapis.com/css?family=Allerta Stencil' rel='stylesheet'>
   <style>
+    body{
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        align-self: center;
+    }
+    h1{
+        font-family: 'Allerta Stencil';
+    }
     .button-container{
       display: flex;
       justify-content: center;
-      gap: 30px;
 
     }
-    h1{
-      align-items: center;
-    }
-    fieldset{
-      background-color: #76c1ea;
-      align-content: center;
-      text-align: center;
-      align-items: center;
-    }
-    .button-container{
+    .btn{
       background-color: #000; 
       color: #fff;
       border-radius: 30px;
@@ -28,18 +28,45 @@
       display: block;
       margin-left: auto;
       margin-right: auto;
+      cursor: pointer;
+      border: none;
+    }
+    .btn:hover{
+        background-color: #fff; 
+        color: #000;
+    }
+    .btn:focus{
+        outline: none;
+    }
+    .button-container{
+        display: flex;
+    }
+    fieldset{
+        background-color: #76c1ea;
+        padding: 15px;
+        border-radius: 10px;
+        width: 400px;
+        align-content: center;
+        text-align: center;
+        align-items: center;
+        width: 300px;
+        border: none;
+        align-self: center;
+        align-content: center;
+        margin:auto;
+    }
+    .main{
+        align-content: center;
     }
   </style>
 </head>
 <body>
-  <h1>Quiz Master V1</h1><br>
+  <h1 align="center">Quiz Master V1</h1><br>
   <fieldset>
   <h1>Login as admin or user</h1><br>
   <div class="button-container">
-    <button onclick="window.location.href='admin.html';" class="btn">Admin</button>
-    </div>
-    <div class="button-container">
-    <button onclick="window.location.href='user.html';" class="btn">User</button>
+    <button onclick="window.location.href='adminlogin.html';" class="btn">Admin</button>
+    <button onclick="window.location.href='userlogin.html';" class="btn">User</button>
   </div>
   </fieldset>
 </body>
