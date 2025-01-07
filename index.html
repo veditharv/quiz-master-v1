@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>The main page</title>
+  <style>
+    .button-container{
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+
+    }
+    h1{
+      align-items: center;
+    }
+    fieldset{
+      background-color: #76c1ea;
+      align-content: center;
+      text-align: center;
+      align-items: center;
+    }
+    .button-container{
+      background-color: #000; 
+      color: #fff;
+      border-radius: 30px;
+      padding: 10px 20px;
+      font-size: 20px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Quiz Master V1</h1><br>
+  <fieldset>
+  <h1>Login as admin or user</h1><br>
+  <div class="button-container">
+    <button onclick="window.location.href='admin.html';" class="btn">Admin</button>
+    </div>
+    <div class="button-container">
+    <button onclick="window.location.href='user.html';" class="btn">User</button>
+  </div>
+  </fieldset>
+</body>
+</html>

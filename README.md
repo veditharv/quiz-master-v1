@@ -1,2 +1,2 @@
 # quiz-master-v1
-web programming project
+project for my course
