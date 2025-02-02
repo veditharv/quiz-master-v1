@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+        }
+        nav {
+            background-color: #007BFF;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            min-width: 160px;
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: black;
+            padding: 10px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dashboard {
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card h3 {
+            margin: 0 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div>
+            <a href="#">Dashboard</a>
+            <a href="#">Study Material</a>
+            <a href="#">Quiz</a>
+        </div>
+        <div class="dropdown">
+            <img src="profile-pic-placeholder.png" alt="Profile" style="width: 40px; height: 40px; border-radius: 50%; cursor: pointer;">
+            <div class="dropdown-content">
+                <a href="#">Details</a>
+                <a href="#">Scores</a>
+                <a href="#">Log out</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard">
+        <h1>Welcome to your Dashboard</h1>
+
+        <div class="card">
+            <h3>Hours Spent</h3>
+            <p>10 hours</p>
+        </div>
+        <div class="card">
+            <h3>Subject Name</h3>
+            <p>Mathematics</p>
+        </div>
+        <div class="card">
+            <h3>Total Chapters</h3>
+            <p>12</p>
+        </div>
+        <div class="card">
+            <h3>Chapters Remaining</h3>
+            <p>4</p>
+        </div>
+    </div>
+</body>
+</html>
