@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">My Profile</h5>
+                <p>{{ current_user.fullname }}</p>
+                <p>Total Quizzes Taken: {{ scores|length }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <h3>Available Quizzes</h3>
+        <div class="row">
+            {% for quiz in quizzes %}
+            <div class="col-md-4 mb-3">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ quiz.chapter.name }}</h5>
+                        <p class="card-text">{{ quiz.chapter.subject.name }}</p>
+                        <p class="text-muted">{{ quiz.date_of_quiz|datetimeformat }}</p>
+                        <a href="{{ url_for('take_quiz', quiz_id=quiz.quiz_id) }}" 
+                           class="btn btn-primary">Start Quiz</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <h4 class="mt-5">Previous Attempts</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Quiz</th>
+                    <th>Score</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for score in scores %}
+                <tr>
+                    <td>{{ score.quiz.chapter.name }}</td>
+                    <td>{{ score.total_scored }}</td>
+                    <td>{{ score.time_stamp_of_attempt|datetimeformat }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

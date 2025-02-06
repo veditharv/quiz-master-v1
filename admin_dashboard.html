@@ -1,0 +1,137 @@
+<!-- templates/admin_dashboard.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+    <h2 class="mb-4">Admin Dashboard</h2>
+    
+    <div class="row">
+        <!-- Navigation Sidebar -->
+        <div class="col-md-3">
+            <div class="list-group">
+                <a href="#subjects" class="list-group-item list-group-item-action active">Subjects</a>
+                <a href="#chapters" class="list-group-item list-group-item-action">Chapters</a>
+                <a href="#quizzes" class="list-group-item list-group-item-action">Quizzes</a>
+                <a href="#users" class="list-group-item list-group-item-action">Users</a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-md-9">
+            <!-- Subjects Section -->
+            <div id="subjects" class="mb-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4>Subjects</h4>
+                    <a href="{{ url_for('create_subject') }}" class="btn btn-success btn-sm">New Subject</a>
+                </div>
+                <div class="list-group">
+                    {% for subject in subjects %}
+                    <div class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5>{{ subject.name }}</h5>
+                                <p class="mb-0">{{ subject.description }}</p>
+                            </div>
+                            <div>
+                                <a href="{{ url_for('edit_subject', subject_id=subject.subject_id) }}" 
+                                   class="btn btn-warning btn-sm">Edit</a>
+                                <form method="POST" action="{{ url_for('delete_subject', subject_id=subject.subject_id) }}" 
+                                      class="d-inline">
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Chapters Section -->
+            <div id="chapters" class="mb-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4>Chapters</h4>
+                    <a href="{{ url_for('create_chapter') }}" class="btn btn-success btn-sm">New Chapter</a>
+                </div>
+                <div class="list-group">
+                    {% for chapter in chapters %}
+                    <div class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5>{{ chapter.name }}</h5>
+                                <p class="mb-0">{{ chapter.description }}</p>
+                                <small class="text-muted">Subject: {{ chapter.subject.name }}</small>
+                            </div>
+                            <div>
+                                <a href="{{ url_for('edit_chapter', chapter_id=chapter.chapter_id) }}" 
+                                   class="btn btn-warning btn-sm">Edit</a>
+                                <form method="POST" action="{{ url_for('delete_chapter', chapter_id=chapter.chapter_id) }}" 
+                                      class="d-inline">
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Quizzes Section -->
+            <div id="quizzes" class="mb-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4>Quizzes</h4>
+                    <a href="{{ url_for('create_quiz') }}" class="btn btn-success btn-sm">New Quiz</a>
+                </div>
+                <div class="row">
+                    {% for quiz in quizzes %}
+                    <div class="col-md-6 mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ quiz.chapter.name }}</h5>
+                                <p class="card-text">
+                                    <small class="text-muted">
+                                        Date: {{ quiz.date_of_quiz.strftime('%Y-%m-%d %H:%M') }}<br>
+                                        Duration: {{ quiz.time_duration }}
+                                    </small>
+                                </p>
+                                <div class="btn-group">
+                                    <a href="{{ url_for('edit_quiz', quiz_id=quiz.quiz_id) }}" 
+                                       class="btn btn-warning btn-sm">Edit</a>
+                                    <form method="POST" action="{{ url_for('delete_quiz', quiz_id=quiz.quiz_id) }}">
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Users Section -->
+            <div id="users">
+                <h4>Registered Users</h4>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Qualification</th>
+                            <th>Date of Birth</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td>{{ user.fullname }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.qualification }}</td>
+                            <td>{{ user.dob.strftime('%Y-%m-%d') }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

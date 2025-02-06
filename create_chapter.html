@@ -1,0 +1,29 @@
+<!-- templates/create_chapter.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h3>Create New Chapter</h3>
+    <form method="POST">
+        <div class="mb-3">
+            <label class="form-label">Chapter Name</label>
+            <input type="text" class="form-control" name="name" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea class="form-control" name="description" rows="3"></textarea>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Subject</label>
+            <select class="form-select" name="subject_id" required>
+                <option value="">Select Subject</option>
+                {% for subject in subjects %}
+                <option value="{{ subject.subject_id }}">{{ subject.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Create Chapter</button>
+        <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

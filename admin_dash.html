@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+
+    <div class="col-md-3">
+        <div class="list-group">
+            <a href="#subjects" class="list-group-item list-group-item-action active">Subjects</a>
+            <a href="#chapters" class="list-group-item list-group-item-action">Chapters</a>
+            <a href="#quizzes" class="list-group-item list-group-item-action">Quizzes</a>
+            <a href="#users" class="list-group-item list-group-item-action">Users</a>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <h3>Admin Dashboard</h3>
+        
+
+        <div id="subjects" class="mb-5">
+            <h4>Manage Subjects</h4>
+            <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#addSubjectModal">
+                Add New Subject
+            </button>
+            <div class="list-group">
+                {% for subject in subjects %}
+                <div class="list-group-item">
+                    <h5>{{ subject.name }}</h5>
+                    <p>{{ subject.description }}</p>
+                    <div class="btn-group">
+                        <button class="btn btn-sm btn-warning">Edit</button>
+                        <button class="btn btn-sm btn-danger">Delete</button>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="addSubjectModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form method="POST" action="/add_subject">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add New Subject</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label>Subject Name</label>
+                                <input type="text" class="form-control" name="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label>Description</label>
+                                <textarea class="form-control" name="description"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
